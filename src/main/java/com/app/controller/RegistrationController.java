@@ -39,12 +39,11 @@ public class RegistrationController {
 		if(result.hasErrors()) {
 			mav.addObject("user",user);
 			mav.setViewName("registration");
-			mav.addObject("failuremsg", "A problem occured in User registration.. Please try again");
+			//mav.addObject("failuremsg", "A problem occured in User registration.. Please try again");
 			return mav;
 		}
 		boolean saveUser = userRegistrationService.saveUser(user);
-		
-		
+				
 		if(saveUser) {
 			sendEmail(user.getEmail());
 			UserRegistration newUser = new UserRegistration();
@@ -56,7 +55,6 @@ public class RegistrationController {
 			mav.addObject("user", user);
 		}
 		mav.setViewName("registration");
-		
 		return mav;
 		
 	}
